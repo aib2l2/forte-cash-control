@@ -1,0 +1,7 @@
+torch==2.14.1
+torchvision==0.29.1
+scikit-learn==1.9.1
+scipy==1.18.1
+opencv-python-headless==4.14.0.94
+openpyxl==3.1.5
+certifi>=2025.1

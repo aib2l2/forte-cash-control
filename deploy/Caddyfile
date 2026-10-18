@@ -1,0 +1,17 @@
+{$PUBLIC_HOST} {
+    request_body {
+        max_size 101MB
+    }
+    handle /api/v1/* {
+        reverse_proxy api:8000
+    }
+    handle /health {
+        reverse_proxy api:8000
+    }
+    handle {
+        basic_auth {
+            {$UI_USER} {$UI_PASSWORD_HASH}
+        }
+        reverse_proxy ui:8501
+    }
+}

@@ -1,0 +1,61 @@
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: forte-cash-control:local
+    environment:
+      API_KEY: ${API_KEY:?Set API_KEY in the private environment file}
+      MAX_PENDING_JOBS: 4
+      JOB_DEADLINE_SECONDS: 290
+      MAX_UPLOAD_MB: 100
+    volumes:
+      - results:/var/lib/forte
+    read_only: true
+    tmpfs:
+      - /tmp:size=512m
+    networks: [analysis]
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health',timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    mem_limit: 4g
+    cpus: 4
+  ui:
+    image: forte-cash-control:local
+    command: [python, -m, streamlit, run, cash_ml/app.py, --server.address=0.0.0.0, --server.port=8501, --browser.gatherUsageStats=false]
+    environment:
+      API_KEY: ${API_KEY:?Set API_KEY}
+      API_BASE_URL: http://api:8000
+    read_only: true
+    tmpfs:
+      - /tmp:size=512m
+    networks: [analysis]
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+  gateway:
+    image: caddy:2
+    environment:
+      PUBLIC_HOST: ${PUBLIC_HOST:?Set the domain pointing to this server}
+      UI_USER: ${UI_USER:-jury}
+      UI_PASSWORD_HASH: ${UI_PASSWORD_HASH:?Set a Caddy password hash}
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - tls:/data
+      - caddy_config:/config
+    networks: [analysis, public]
+    depends_on: [api, ui]
+    restart: unless-stopped
+networks:
+  analysis:
+    internal: true
+  public:
+volumes:
+  results:
+  tls:
+  caddy_config:

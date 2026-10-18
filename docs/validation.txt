@@ -1,0 +1,20 @@
+Release validation — 2026-10-18
+
+Active model: typed_v2 (frozen R3D-18 + two Logistic Regression classifiers).
+Source and weights were copied from the working project. No retraining or model
+replacement was performed for this publication.
+
+Checks on the standalone publication copy:
+- pytest tests cash_ml -q: 88 passed, 1 skipped.
+- The skipped check requires private experiment artifacts, intentionally absent.
+- R3D-18 and classifier SHA-256 hashes match typed_report.json.
+- The classifier vocabulary matches all 11 allowed types.
+- Real inference on a generated synthetic clip passed with network disabled.
+- Credentials and private input/result files were excluded from the Git file list.
+- The final 12-slide presentation passed layout/package checks and visual review.
+
+These checks validate packaging and behavior. They are not an independent
+accuracy measurement or verification of deployment on an external server.
+
+Test isolation fix: conftest.py restores __main__ after Streamlit AppTest so
+multiprocessing spawn does not execute the interface as its entry point.

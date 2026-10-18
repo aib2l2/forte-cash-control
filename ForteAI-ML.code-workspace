@@ -1,0 +1,24 @@
+{
+  "folders": [{"path": "."}],
+  "settings": {"python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python"},
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "ML Backend — R3D-18", "type": "debugpy", "request": "launch",
+        "python": "${workspaceFolder}/.venv/bin/python",
+        "module": "uvicorn",
+        "args": ["cash_ml.api:app", "--host", "127.0.0.1", "--port", "8000", "--workers", "1"],
+        "cwd": "${workspaceFolder}", "console": "integratedTerminal"
+      },
+      {
+        "name": "ML Interface", "type": "debugpy", "request": "launch",
+        "python": "${workspaceFolder}/.venv/bin/python",
+        "module": "streamlit",
+        "args": ["run", "cash_ml/app.py", "--server.address", "127.0.0.1"],
+        "cwd": "${workspaceFolder}", "console": "integratedTerminal"
+      }
+    ],
+    "compounds": [{"name": "ForteAI ML — всё приложение", "configurations": ["ML Backend — R3D-18", "ML Interface"], "stopAll": true}]
+  }
+}

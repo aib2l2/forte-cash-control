@@ -1,0 +1,113 @@
+:root { --forte-wine: #4a0221; --forte-brand: #a31551; --forte-ink: #252126; --forte-muted: #777078; --forte-line: #e8e2e6; --forte-font: 'Forte Open Sans', 'Open Sans', Arial, sans-serif; }
+.stApp { background: #f7f6f8; color: var(--forte-ink); font-family: var(--forte-font); }
+.stApp [data-testid="stMarkdownContainer"], .stApp p, .stApp h1, .stApp h2, .stApp h3, .stApp label, .stApp button, .stApp input { font-family: var(--forte-font); }
+.stApp h1, .stApp h2, .stApp h3 { color: var(--forte-wine); letter-spacing: -.025em; }
+.stApp h2 { font-size: 25px; font-weight: 650; padding: 0 0 10px; }
+.stApp h3 { font-size: 19px; font-weight: 650; }
+.stMainBlockContainer { max-width: 1240px; padding: 24px 32px 28px; }
+[data-testid="stHeader"] { height: 0; background: transparent; }
+[data-testid="stToolbar"], [data-testid="stDecoration"], #MainMenu { display: none; }
+.stApp [data-testid="stVerticalBlock"] { gap: 16px; }
+.stApp [data-testid="stCaptionContainer"] { color: var(--forte-muted); font-size: 12px; }
+.stApp [data-testid="stCaptionContainer"] p { color: #796a74; font-size: 12px; line-height: 1.7; }
+.forte-topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 14px 0 24px; }
+.stApp a.forte-brand, .stApp a.forte-brand:hover { display: inline-flex; align-items: center; gap: 20px; text-decoration: none !important; color: var(--forte-wine); }
+.forte-brand img { width: 108px; height: 32px; }
+.forte-brand-divider { height: 28px; width: 1px; background: #d9cdd3; }
+.forte-product { color: var(--forte-wine); font-weight: 600; font-size: 19px; letter-spacing: -.4px; }
+.forte-top-right { display: flex; align-items: center; gap: 22px; }
+.forte-project { color: var(--forte-muted); font-size: 12px; }
+.forte-connection { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #396c59; padding: 8px 12px; border-radius: 100px; background: #eaf2ed; white-space: nowrap; }
+.forte-dot { height: 6px; width: 6px; border-radius: 50%; background: #52866b; }
+.forte-connection.is-offline { background: #fbebee; color: #942a43; }
+.is-offline .forte-dot { background: #942a43; }
+.stTabs [data-baseweb="tab-list"] { background: transparent; gap: 28px; border-bottom: 1px solid var(--forte-line); margin-bottom: 22px; }
+.stTabs [data-baseweb="tab"] { padding: 0 0 15px; height: 46px; font-size: 14px; color: var(--forte-muted); background: transparent; }
+.stTabs [data-baseweb="tab"][aria-selected="true"] { color: var(--forte-wine); font-weight: 650; }
+.stTabs [data-baseweb="tab-highlight"] { height: 3px; border-radius: 3px; background: var(--forte-brand); }
+.stTabs [data-baseweb="tab-border"] { display: none; }
+.forte-hero { background: #ede9ee; border-radius: 24px; display: grid; grid-template-columns: 1.3fr .9fr; overflow: hidden; min-height: 264px; align-items: center; padding: 32px 38px; margin-bottom: 6px; gap: 8px; }
+.forte-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: #8b6275; line-height: 1.7; }
+.forte-hero h1 { font-size: clamp(28px, 3.2vw, 40px); font-weight: 650; line-height: 1.23; letter-spacing: -1.25px; margin: 10px 0 14px; padding: 0; }
+.forte-hero p { color: #6a5c67; font-size: 13px; line-height: 1.8; margin: 0; }
+.forte-hero-art { min-width: 0; max-width: 380px; width: 100%; justify-self: end; }
+.forte-hero-art svg { width: 100%; height: auto; display: block; }
+.forte-facts { display: flex; gap: 22px; align-items: center; color: #70666e; font-size: 12px; padding: 0 5px 12px; }
+.forte-facts span { display: inline-flex; gap: 8px; align-items: center; }
+.forte-facts i { width: 4px; height: 4px; border-radius: 50%; background: #a31551; }
+.st-key-upload_card, .st-key-report_guide, .st-key-model_summary, .st-key-result_card { background: #fff; border: 1px solid var(--forte-line); border-radius: 20px; padding: 28px; }
+.st-key-upload_card { min-height: 408px; }
+.st-key-report_guide { height: 100%; }
+.forte-section-label { margin-bottom: -5px; }
+.forte-section-label span { color: var(--forte-brand); margin-right: 8px; }
+.st-key-upload_card [data-testid="stHeading"] h2 { margin: 0; }
+.st-key-upload_card [data-testid="stFileUploaderDropzone"] { border: 1.5px dashed #d5bcc8; background: #fcf9fb; border-radius: 14px; padding: 22px 20px; min-height: 166px; flex-direction: column; justify-content: center; gap: 16px; transition: border-color .15s, background .15s; }
+.st-key-upload_card [data-testid="stFileUploaderDropzone"]:hover { border-color: var(--forte-brand); background: #f8f0f4; }
+.st-key-upload_card [data-testid="stFileUploaderDropzone"] svg { fill: #9c6c82; }
+.st-key-upload_card [data-testid="stFileUploaderDropzone"] > span { order: 2; }
+.st-key-upload_card [data-testid="stFileUploaderDropzoneInstructions"] { order: 1; display: flex; flex-direction: column; text-align: center; gap: 5px; margin: 0; }
+.st-key-upload_card [data-testid="stFileUploaderDropzoneInstructions"] > * { display: none; }
+.st-key-upload_card [data-testid="stFileUploaderDropzoneInstructions"]::before { content: 'Перетащите видео сюда'; font-size: 14px; font-weight: 600; color: #583449; }
+.st-key-upload_card [data-testid="stFileUploaderDropzoneInstructions"]::after { content: 'или выберите файл на устройстве'; font-size: 11px; color: #8c7e87; }
+.st-key-upload_card [data-testid="stFileUploaderDropzone"] button:not([aria-label]) { order: 2; border: 1px solid #d8c7d0; border-radius: 10px; background: white; color: var(--forte-wine); min-height: 40px; font-size: 0; }
+.st-key-upload_card [data-testid="stFileUploaderDropzone"] button:not([aria-label])::after { content: 'Выбрать файл'; font-size: 12px; font-weight: 600; }
+.st-key-upload_card [data-testid="stFileUploaderDropzone"] button:not([aria-label]) * { display: none; }
+.stApp button[kind="primary"] { background: var(--forte-wine); border: 1px solid var(--forte-wine); color: white; border-radius: 12px; min-height: 48px; font-weight: 600; transition: background .15s; box-shadow: none; }
+.stApp button[kind="primary"]:hover { background: #700b35; border-color: #700b35; color: white; }
+.stApp button[kind="primary"]:disabled { background: #e9e0e5; color: #9c8893; border-color: #e9e0e5; }
+.stApp button:focus-visible, .stTabs [data-baseweb="tab"]:focus-visible { outline: 3px solid #b84d78; outline-offset: 3px; }
+.stApp button[kind="secondary"] { border-radius: 11px; color: var(--forte-wine); border-color: #d9ccd3; }
+.forte-guide h2 { font-size: 25px; line-height: 1.3; font-weight: 650; padding-top: 8px; margin: 0 0 22px; }
+.forte-guide-row { display: flex; gap: 15px; margin-top: 22px; }
+.forte-guide-row > span { background: #f6edf2; color: #a31551; width: 31px; height: 31px; flex: 0 0 31px; border-radius: 10px; display: grid; place-items: center; font-size: 10px; font-weight: 700; }
+.forte-guide-row h3 { color: #3c2a35; font-size: 13px; font-weight: 650; margin: 0 0 5px; padding: 0; letter-spacing: 0; }
+.forte-guide-row p { color: #847680; font-size: 12px; margin: 0; line-height: 1.7; }
+.forte-notice { font-size: 12px; line-height: 1.7; color: #7c6570; display: flex; gap: 10px; background: #f1edf0; padding: 14px 18px; border-radius: 12px; margin: 0; }
+.forte-notice b { font-weight: 650; color: #5a3e4c; }
+.forte-empty { text-align: center; padding: 25px 10px 28px; }
+.forte-empty-icon { width: 62px; height: 62px; margin: 0 auto 16px; background: #f6f0f4; border-radius: 18px; display: grid; place-items: center; color: #aa7b91; }
+.forte-empty h3 { font-size: 16px; font-weight: 600; color: #614653; padding: 0; margin: 0 0 9px; }
+.forte-empty p { font-size: 12px; color: #81717a; line-height: 1.8; margin: 0; }
+.forte-event-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 10px; }
+.forte-event-number { color: #9b7e8e; font-size: 11px; letter-spacing: 1px; font-weight: 650; }
+.forte-timecode { background: #f6edf2; color: #861c49; padding: 6px 11px; font-size: 12px; border-radius: 8px; font-variant-numeric: tabular-nums; }
+.st-key-result_card [data-testid="stVerticalBlockBorderWrapper"] { border-radius: 16px; }
+.st-key-result_card [data-testid="stImage"] img { border-radius: 12px; object-fit: contain; max-height: 400px; }
+.stApp [data-testid="stAlert"] { border-radius: 12px; }
+.stApp [data-testid="stExpander"] { background: white; border-radius: 12px; border-color: var(--forte-line); }
+.forte-model-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; }
+.forte-model-tags span { padding: 6px 12px; background: #f6edf2; color: #7b3454; border-radius: 8px; font-size: 12px; }
+.forte-footer { padding: 23px 3px 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--forte-line); color: #9a8992; font-size: 10px; margin-top: 10px; }
+.forte-footer b { color: #8a546d; font-weight: 600; }
+@media (max-width: 850px) {
+  .stMainBlockContainer { padding: 18px 22px 28px; }
+  .forte-top-right .forte-project { display: none; }
+  .forte-hero { padding: 28px; grid-template-columns: 1.35fr .8fr; }
+  .forte-hero h1 { font-size: 30px; }
+  .forte-hero-art { min-width: 150px; }
+  .st-key-upload_card, .st-key-report_guide, .st-key-result_card, .st-key-model_summary { padding: 22px; }
+}
+@media (max-width: 640px) {
+  .stMainBlockContainer { padding: 14px 16px 24px; }
+  .forte-topbar { padding: 9px 0 14px; gap: 8px; flex-wrap: wrap; }
+  .stApp a.forte-brand { gap: 12px; }
+  .forte-brand img { width: 88px; height: 27px; }
+  .forte-product { font-size: 15px; }
+  .forte-brand-divider { height: 22px; }
+  .forte-connection { padding: 6px 9px; font-size: 10px; }
+  .forte-hero { display: block; padding: 25px 22px; min-height: 0; border-radius: 18px; }
+  .forte-hero h1 { font-size: 28px; letter-spacing: -.9px; }
+  .forte-hero p { font-size: 12px; }
+  .forte-hero-art { display: none; }
+  .forte-eyebrow { font-size: 9px; letter-spacing: 1px; }
+  .forte-facts { flex-wrap: wrap; gap: 8px 16px; font-size: 11px; padding-bottom: 6px; }
+  .stTabs [data-baseweb="tab-list"] { margin-bottom: 16px; }
+  .stTabs [data-baseweb="tab"] { font-size: 13px; }
+  .st-key-upload_card, .st-key-report_guide, .st-key-result_card, .st-key-model_summary { padding: 22px 18px; border-radius: 16px; }
+  .st-key-upload_card { min-height: 0; }
+  .st-key-upload_card [data-testid="stFileUploaderDropzone"] { flex-wrap: wrap; justify-content: center; gap: 14px; padding: 24px 12px; }
+  .forte-guide h2 { font-size: 23px; }
+  .forte-notice { padding: 12px 15px; font-size: 11px; }
+  .forte-footer { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .stApp * { transition: none !important; animation: none !important; } }

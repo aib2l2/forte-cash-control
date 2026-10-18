@@ -1,0 +1,5 @@
+Reference and Forte logo: https://bank.forte.kz/ru
+Logo extracted from the public site on 2026-10-18 for the requested ForteAI prototype styling.
+Open Sans font: official site assets. License: OpenSans-OFL.txt (SIL OFL).
+Palette: logo #A31551; button/headings #4A0221.
+No external fonts, tracking scripts or banking flows are loaded by this app.

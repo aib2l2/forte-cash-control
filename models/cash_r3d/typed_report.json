@@ -1,0 +1,1187 @@
+{
+  "format_version": 2,
+  "created_utc": "2026-10-17T09:34:01.000577+00:00",
+  "versions": {
+    "torch": "2.14.1",
+    "torchvision": "0.29.1",
+    "scikit-learn": "1.9.1",
+    "numpy": "2.5.4",
+    "opencv-python-headless": "4.14.0.94"
+  },
+  "model": "frozen R3D-18 + binary LogisticRegression + 11-type LogisticRegression",
+  "allowed_types": [
+    "cash_area_door_left_open",
+    "cash_left_unattended",
+    "cash_taken_before_verification",
+    "customer_cash_mixing",
+    "incorrect_cash_handover",
+    "overlapping_customer_transactions",
+    "personal_items_in_work_area",
+    "safe_key_left_in_lock",
+    "safe_left_open",
+    "unauthorized_person_in_cash_area",
+    "unclassified_violation"
+  ],
+  "type_train_counts": {
+    "cash_area_door_left_open": 1,
+    "overlapping_customer_transactions": 1,
+    "safe_key_left_in_lock": 1,
+    "incorrect_cash_handover": 1,
+    "cash_left_unattended": 3,
+    "unclassified_violation": 2,
+    "customer_cash_mixing": 1,
+    "personal_items_in_work_area": 1,
+    "cash_taken_before_verification": 1,
+    "unauthorized_person_in_cash_area": 1,
+    "safe_left_open": 1
+  },
+  "preprocess_version": "r3d18-kinetics400-v1-16frames-4sec-stride4-v2",
+  "labels_sha256": "4039cd5cb32ffefa4c8db893012677b52126c383475aa9a3151c1046a527151a",
+  "weights_sha256": "b1f16e1b515b90d58445b641da35a0cfe187c2155cf0433391ee8692dc52f571",
+  "threshold": 0.15182979912851288,
+  "unique_video_label_counts": {
+    "1": 21,
+    "0": 19
+  },
+  "source_row_count": 42,
+  "duplicate_groups": [
+    [
+      "Х-4",
+      "Х-47"
+    ],
+    [
+      "Х-5",
+      "Х-48"
+    ]
+  ],
+  "split_method": "SHA256 groups, seed 42; every type retained in train; singleton types cannot be evaluated independently; scene groups NOT reviewed",
+  "limitations": [
+    "Point labels, not reviewed event intervals",
+    "Scene leakage not ruled out",
+    "Singleton types have no independent test examples",
+    "Scores are not calibrated probabilities",
+    "New split supersedes v1 metrics; evaluation is exploratory"
+  ],
+  "validation": {
+    "videos": 8,
+    "threshold": 0.15182979912851288,
+    "balanced_accuracy": 0.5,
+    "precision": 0.5,
+    "recall": 1.0,
+    "confusion_matrix_tn_fp_fn_tp": [
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        4
+      ]
+    ]
+  },
+  "test": {
+    "videos": 8,
+    "threshold": 0.15182979912851288,
+    "balanced_accuracy": 0.375,
+    "precision": 0.42857142857142855,
+    "recall": 0.75,
+    "confusion_matrix_tn_fp_fn_tp": [
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        3
+      ]
+    ]
+  },
+  "type_validation": {
+    "annotation_windows": 4,
+    "accuracy_at_annotated_windows": 0.0,
+    "detected_and_correct_type_at_annotated_windows": 0,
+    "class_order": [
+      "cash_area_door_left_open",
+      "cash_left_unattended",
+      "cash_taken_before_verification",
+      "customer_cash_mixing",
+      "incorrect_cash_handover",
+      "overlapping_customer_transactions",
+      "personal_items_in_work_area",
+      "safe_key_left_in_lock",
+      "safe_left_open",
+      "unauthorized_person_in_cash_area",
+      "unclassified_violation"
+    ],
+    "confusion_matrix": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    ],
+    "per_type": {
+      "cash_area_door_left_open": {
+        "support": 0,
+        "correct": 0
+      },
+      "cash_left_unattended": {
+        "support": 1,
+        "correct": 0
+      },
+      "cash_taken_before_verification": {
+        "support": 1,
+        "correct": 0
+      },
+      "customer_cash_mixing": {
+        "support": 0,
+        "correct": 0
+      },
+      "incorrect_cash_handover": {
+        "support": 0,
+        "correct": 0
+      },
+      "overlapping_customer_transactions": {
+        "support": 0,
+        "correct": 0
+      },
+      "personal_items_in_work_area": {
+        "support": 0,
+        "correct": 0
+      },
+      "safe_key_left_in_lock": {
+        "support": 1,
+        "correct": 0
+      },
+      "safe_left_open": {
+        "support": 0,
+        "correct": 0
+      },
+      "unauthorized_person_in_cash_area": {
+        "support": 0,
+        "correct": 0
+      },
+      "unclassified_violation": {
+        "support": 1,
+        "correct": 0
+      }
+    },
+    "predictions": [
+      {
+        "video": "Х-34",
+        "timecode": 13,
+        "window_index": 3,
+        "expected": "cash_taken_before_verification",
+        "predicted": "cash_left_unattended",
+        "detected": true
+      },
+      {
+        "video": "Х-46",
+        "timecode": 11,
+        "window_index": 2,
+        "expected": "cash_left_unattended",
+        "predicted": "unclassified_violation",
+        "detected": true
+      },
+      {
+        "video": "Х-32",
+        "timecode": 5,
+        "window_index": 1,
+        "expected": "unclassified_violation",
+        "predicted": "unauthorized_person_in_cash_area",
+        "detected": false
+      },
+      {
+        "video": "Х-22",
+        "timecode": 14,
+        "window_index": 3,
+        "expected": "safe_key_left_in_lock",
+        "predicted": "cash_left_unattended",
+        "detected": true
+      }
+    ]
+  },
+  "type_test": {
+    "annotation_windows": 4,
+    "accuracy_at_annotated_windows": 0.25,
+    "detected_and_correct_type_at_annotated_windows": 0,
+    "class_order": [
+      "cash_area_door_left_open",
+      "cash_left_unattended",
+      "cash_taken_before_verification",
+      "customer_cash_mixing",
+      "incorrect_cash_handover",
+      "overlapping_customer_transactions",
+      "personal_items_in_work_area",
+      "safe_key_left_in_lock",
+      "safe_left_open",
+      "unauthorized_person_in_cash_area",
+      "unclassified_violation"
+    ],
+    "confusion_matrix": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "per_type": {
+      "cash_area_door_left_open": {
+        "support": 0,
+        "correct": 0
+      },
+      "cash_left_unattended": {
+        "support": 1,
+        "correct": 1
+      },
+      "cash_taken_before_verification": {
+        "support": 1,
+        "correct": 0
+      },
+      "customer_cash_mixing": {
+        "support": 0,
+        "correct": 0
+      },
+      "incorrect_cash_handover": {
+        "support": 0,
+        "correct": 0
+      },
+      "overlapping_customer_transactions": {
+        "support": 0,
+        "correct": 0
+      },
+      "personal_items_in_work_area": {
+        "support": 0,
+        "correct": 0
+      },
+      "safe_key_left_in_lock": {
+        "support": 0,
+        "correct": 0
+      },
+      "safe_left_open": {
+        "support": 2,
+        "correct": 0
+      },
+      "unauthorized_person_in_cash_area": {
+        "support": 0,
+        "correct": 0
+      },
+      "unclassified_violation": {
+        "support": 0,
+        "correct": 0
+      }
+    },
+    "predictions": [
+      {
+        "video": "Х-24",
+        "timecode": 8,
+        "window_index": 1,
+        "expected": "safe_left_open",
+        "predicted": "cash_left_unattended",
+        "detected": false
+      },
+      {
+        "video": "Х-28",
+        "timecode": 7,
+        "window_index": 1,
+        "expected": "safe_left_open",
+        "predicted": "cash_left_unattended",
+        "detected": true
+      },
+      {
+        "video": "Х-17",
+        "timecode": 7,
+        "window_index": 1,
+        "expected": "cash_taken_before_verification",
+        "predicted": "cash_left_unattended",
+        "detected": true
+      },
+      {
+        "video": "Х-38",
+        "timecode": 33,
+        "window_index": 8,
+        "expected": "cash_left_unattended",
+        "predicted": "cash_left_unattended",
+        "detected": false
+      }
+    ]
+  },
+  "splits": {
+    "train": [
+      {
+        "id": "Х-33",
+        "label": 1,
+        "timecode": 6,
+        "type": "cash_area_door_left_open",
+        "sha256": "209e8aaca88df59064e5f28b3bcc489fee3eea9eb920889b69c03c83d52430c6",
+        "aliases": [
+          "Х-33"
+        ],
+        "annotations": [
+          {
+            "timecode": 6,
+            "type": "cash_area_door_left_open"
+          }
+        ]
+      },
+      {
+        "id": "Х-18",
+        "label": 1,
+        "timecode": 20,
+        "type": "overlapping_customer_transactions",
+        "sha256": "90607b0b0cb772fcf29b0c7e0e56fa6af36da6fac0efe93b8a616b5de94a156c",
+        "aliases": [
+          "Х-18"
+        ],
+        "annotations": [
+          {
+            "timecode": 20,
+            "type": "overlapping_customer_transactions"
+          }
+        ]
+      },
+      {
+        "id": "Х-11",
+        "label": 1,
+        "timecode": 18,
+        "type": "safe_key_left_in_lock",
+        "sha256": "b3a954a5b761ad47943e061599315e3fe9d22573eeb92bb14bf315cdcd422fc5",
+        "aliases": [
+          "Х-11"
+        ],
+        "annotations": [
+          {
+            "timecode": 18,
+            "type": "safe_key_left_in_lock"
+          }
+        ]
+      },
+      {
+        "id": "X-1",
+        "label": 1,
+        "timecode": 22,
+        "type": "incorrect_cash_handover",
+        "sha256": "8911a9219b9433091824e553a70bb80335f075fd8ac982d2062d2ecf023c16bc",
+        "aliases": [
+          "X-1"
+        ],
+        "annotations": [
+          {
+            "timecode": 22,
+            "type": "incorrect_cash_handover"
+          }
+        ]
+      },
+      {
+        "id": "Х-15",
+        "label": 1,
+        "timecode": 15,
+        "type": "cash_left_unattended",
+        "sha256": "69caf59620fcd80bedcb664514730ab38f2f800da27000a8e037d7440be5dc7a",
+        "aliases": [
+          "Х-15"
+        ],
+        "annotations": [
+          {
+            "timecode": 15,
+            "type": "cash_left_unattended"
+          }
+        ]
+      },
+      {
+        "id": "Х-26",
+        "label": 1,
+        "timecode": 9,
+        "type": "cash_left_unattended",
+        "sha256": "e3a00b6e0f38b1d9b5498140f14906c71e204359262a90ce7a9974d64bf081e9",
+        "aliases": [
+          "Х-26"
+        ],
+        "annotations": [
+          {
+            "timecode": 9,
+            "type": "cash_left_unattended"
+          }
+        ]
+      },
+      {
+        "id": "Х-44",
+        "label": 1,
+        "timecode": 16,
+        "type": "unclassified_violation",
+        "sha256": "9774ed882153af3ba1a7e71c9b9249619e2b3a97ae336aad6143369802ca3522",
+        "aliases": [
+          "Х-44"
+        ],
+        "annotations": [
+          {
+            "timecode": 16,
+            "type": "unclassified_violation"
+          }
+        ]
+      },
+      {
+        "id": "Х-4",
+        "label": 1,
+        "timecode": 57,
+        "type": "cash_left_unattended",
+        "sha256": "5385be9420e6a70547d6bcfd0b13d60f9c0738877645afa277d09550a96b8445",
+        "aliases": [
+          "Х-4",
+          "Х-47"
+        ],
+        "annotations": [
+          {
+            "timecode": 57,
+            "type": "cash_left_unattended"
+          },
+          {
+            "timecode": 68,
+            "type": "customer_cash_mixing"
+          }
+        ]
+      },
+      {
+        "id": "Х-13",
+        "label": 1,
+        "timecode": 47,
+        "type": "unclassified_violation",
+        "sha256": "a37930cf119bb691be77d8624b18333b04d9c67066a7f4627d63e3208dfa6057",
+        "aliases": [
+          "Х-13"
+        ],
+        "annotations": [
+          {
+            "timecode": 47,
+            "type": "unclassified_violation"
+          }
+        ]
+      },
+      {
+        "id": "Х-40",
+        "label": 1,
+        "timecode": 17,
+        "type": "personal_items_in_work_area",
+        "sha256": "6a81739ced0efdcd4a4feb76ea16562a20ceb53a2232a801528716c450366c9f",
+        "aliases": [
+          "Х-40"
+        ],
+        "annotations": [
+          {
+            "timecode": 17,
+            "type": "personal_items_in_work_area"
+          }
+        ]
+      },
+      {
+        "id": "X-2",
+        "label": 1,
+        "timecode": 10,
+        "type": "cash_taken_before_verification",
+        "sha256": "9932ae0a10d3b9371bf52ea558dc19092fcf47adcd275a73a52a56b95464bca6",
+        "aliases": [
+          "X-2"
+        ],
+        "annotations": [
+          {
+            "timecode": 10,
+            "type": "cash_taken_before_verification"
+          }
+        ]
+      },
+      {
+        "id": "Х-30",
+        "label": 1,
+        "timecode": 13,
+        "type": "unauthorized_person_in_cash_area",
+        "sha256": "05af66ce27b83d7c10c5d33b6f1847ec042c01ed21afdcbd43a13abcefd28199",
+        "aliases": [
+          "Х-30"
+        ],
+        "annotations": [
+          {
+            "timecode": 13,
+            "type": "unauthorized_person_in_cash_area"
+          }
+        ]
+      },
+      {
+        "id": "Х-20",
+        "label": 1,
+        "timecode": 5,
+        "type": "safe_left_open",
+        "sha256": "7e585e33517f7258bd2d1ed3e139556609bc997bb07b78355555060ef193b77a",
+        "aliases": [
+          "Х-20"
+        ],
+        "annotations": [
+          {
+            "timecode": 5,
+            "type": "safe_left_open"
+          }
+        ]
+      },
+      {
+        "id": "Х-14",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "7d6890ecb4a2b28bbdd3b61b6711566eee84a53ab3439c40cd9b6a3a6714c681",
+        "aliases": [
+          "Х-14"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-35",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "26430119e074d6f0eb5dbc7ec3e26bbc31cf18903265bb4372bd7d7104908640",
+        "aliases": [
+          "Х-35"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-3",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "21468fcef4ea5f45ce7d465e620f84e09c8b50314f4ecdc06f69224c701b3a5b",
+        "aliases": [
+          "Х-3"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-29",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "b9bfb76ac8ea47eb368fc78a2f6370e4d98e79185972f63cf301ee22f12b5941",
+        "aliases": [
+          "Х-29"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-39",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "deeeee54539fb894b17447296bd7f0807b9dc662bad9af4dcd27f4fbdd677187",
+        "aliases": [
+          "Х-39"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-8",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "6a53e10acdcf52396ad5b1697eead32d8322c0911d792523a5c33fe5b388f4e7",
+        "aliases": [
+          "Х-8"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-37",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "ac4cf04844c0aa08a5e19f5f7fe984f1477943294922d6ef77bdc5b88b97160e",
+        "aliases": [
+          "Х-37"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-25",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "901f61cf1a1b8754dda56466308c19fc203a1a4c0e85d1e7827849d34e2d52f0",
+        "aliases": [
+          "Х-25"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-10",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "57a0e46c7a45f0e831f61d9c80722fefe4b74dbcfe1d3031ff58307d481f9a5c",
+        "aliases": [
+          "Х-10"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-31",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "6a9fa7dd2e6db4cbe57f3c96a6cb256f23c04aa4e6fd44622fdf5de662cc0649",
+        "aliases": [
+          "Х-31"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-43",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "39e28d7be01cdb090ede1881ce3ef704fa413271deb69d6735c1953f340d6069",
+        "aliases": [
+          "Х-43"
+        ],
+        "annotations": []
+      }
+    ],
+    "validation": [
+      {
+        "id": "Х-34",
+        "label": 1,
+        "timecode": 13,
+        "type": "cash_taken_before_verification",
+        "sha256": "f3e351bea71150f4e8c76e2c8f0656a4e92063319d7cd39e264078c5ba9139c3",
+        "aliases": [
+          "Х-34"
+        ],
+        "annotations": [
+          {
+            "timecode": 13,
+            "type": "cash_taken_before_verification"
+          }
+        ]
+      },
+      {
+        "id": "Х-46",
+        "label": 1,
+        "timecode": 11,
+        "type": "cash_left_unattended",
+        "sha256": "66fc5d28c2371592f9260305589bdc86636fdd2ebe7a7ec976eec00a23d43df4",
+        "aliases": [
+          "Х-46"
+        ],
+        "annotations": [
+          {
+            "timecode": 11,
+            "type": "cash_left_unattended"
+          }
+        ]
+      },
+      {
+        "id": "Х-32",
+        "label": 1,
+        "timecode": 5,
+        "type": "unclassified_violation",
+        "sha256": "bcc277cbf1a36245156b2bb9a0e0b826432390b42040c0b82201a8c21ab23ce9",
+        "aliases": [
+          "Х-32"
+        ],
+        "annotations": [
+          {
+            "timecode": 5,
+            "type": "unclassified_violation"
+          }
+        ]
+      },
+      {
+        "id": "Х-22",
+        "label": 1,
+        "timecode": 14,
+        "type": "safe_key_left_in_lock",
+        "sha256": "c9a30d44907e4a41b3a8ccf101774cd2e0804de20927bfbc9e1ccba1f2326b78",
+        "aliases": [
+          "Х-22"
+        ],
+        "annotations": [
+          {
+            "timecode": 14,
+            "type": "safe_key_left_in_lock"
+          }
+        ]
+      },
+      {
+        "id": "Х-45",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "524bf9ff2d5e81211dbbeff73129dbb5f3a5e5e35a64f443f53e16b1c2d471c7",
+        "aliases": [
+          "Х-45"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-21",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "efd876a04224cac781ac64bf5d6e107ded67340b7b7715fd9ca3408b240a1075",
+        "aliases": [
+          "Х-21"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-23",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "b637677ef5a7f0fa54d9f116ce6493cf74a4c99b8149a9c9916b96ef257535bd",
+        "aliases": [
+          "Х-23"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-19",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "16065504b21260bff18698c7bbf048ffa356c9de43d43b92643b6c2eddedac0f",
+        "aliases": [
+          "Х-19"
+        ],
+        "annotations": []
+      }
+    ],
+    "test": [
+      {
+        "id": "Х-24",
+        "label": 1,
+        "timecode": 8,
+        "type": "safe_left_open",
+        "sha256": "c175a683749401d5a9ecf6f1c188b64fa8a09543f41482c1e4eb2232255715d3",
+        "aliases": [
+          "Х-24"
+        ],
+        "annotations": [
+          {
+            "timecode": 8,
+            "type": "safe_left_open"
+          }
+        ]
+      },
+      {
+        "id": "Х-28",
+        "label": 1,
+        "timecode": 7,
+        "type": "safe_left_open",
+        "sha256": "d15ef04bcfae571bd2d7fc4e4d709ba595ae19f44136a43e7277f17e7b6e5b6d",
+        "aliases": [
+          "Х-28"
+        ],
+        "annotations": [
+          {
+            "timecode": 7,
+            "type": "safe_left_open"
+          }
+        ]
+      },
+      {
+        "id": "Х-17",
+        "label": 1,
+        "timecode": 7,
+        "type": "cash_taken_before_verification",
+        "sha256": "0378b8026b2e6afd1775a5d0fdd12dd09c491785b626e9c20428f7dc6bd59364",
+        "aliases": [
+          "Х-17"
+        ],
+        "annotations": [
+          {
+            "timecode": 7,
+            "type": "cash_taken_before_verification"
+          }
+        ]
+      },
+      {
+        "id": "Х-38",
+        "label": 1,
+        "timecode": 33,
+        "type": "cash_left_unattended",
+        "sha256": "5a6f6a13ef88191ec1d9a2a303f1be74d16aa3381a57aaadba8850aac715ff10",
+        "aliases": [
+          "Х-38"
+        ],
+        "annotations": [
+          {
+            "timecode": 33,
+            "type": "cash_left_unattended"
+          }
+        ]
+      },
+      {
+        "id": "Х-12",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "955755baf54418b48ea645dcd98e7e8dcca1d1e227e9b286a9427062db304fd4",
+        "aliases": [
+          "Х-12"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-5",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "1f5840bff58f298e89c4afa00cb1c18f6dafc5c4096c251d9b507604ebefe906",
+        "aliases": [
+          "Х-5",
+          "Х-48"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-16",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "3f516431cf37e3900b7eae857a7b09be258f485702ab56bc6e5b6129103f1fa5",
+        "aliases": [
+          "Х-16"
+        ],
+        "annotations": []
+      },
+      {
+        "id": "Х-27",
+        "label": 0,
+        "timecode": null,
+        "type": null,
+        "sha256": "d3d21494d74e40a7586fe4f6164e515f6621a2d413538c4e15c67d394e85fc2d",
+        "aliases": [
+          "Х-27"
+        ],
+        "annotations": []
+      }
+    ]
+  },
+  "test_predictions": [
+    {
+      "video": "Х-24",
+      "label": 1,
+      "score": 0.0809575284511907
+    },
+    {
+      "video": "Х-28",
+      "label": 1,
+      "score": 0.3660563607314017
+    },
+    {
+      "video": "Х-17",
+      "label": 1,
+      "score": 0.9923683408294552
+    },
+    {
+      "video": "Х-38",
+      "label": 1,
+      "score": 0.5115942935782714
+    },
+    {
+      "video": "Х-12",
+      "label": 0,
+      "score": 0.8967757981225606
+    },
+    {
+      "video": "Х-5",
+      "label": 0,
+      "score": 0.47856667955533216
+    },
+    {
+      "video": "Х-16",
+      "label": 0,
+      "score": 0.9953426448206004
+    },
+    {
+      "video": "Х-27",
+      "label": 0,
+      "score": 0.652808043716452
+    }
+  ],
+  "classifier_sha256": "646633fb64d4e0fee5b26111e978a80daa910729ecc81e0693585db69a0b906e"
+}

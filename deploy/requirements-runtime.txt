@@ -1,0 +1,10 @@
+fastapi==0.143.3
+uvicorn==0.54.0
+python-multipart==0.0.32
+pydantic==2.14.1
+python-dotenv==1.2.4
+streamlit==1.66.0
+httpx==0.28.1
+numpy==2.5.4
+opencv-python-headless==4.14.0.94
+certifi==2026.7.22

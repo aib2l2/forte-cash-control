@@ -1,0 +1,52 @@
+# Local environments and generated files
+.venv*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+node_modules/
+build/
+dist/
+.DS_Store
+# Credentials
+.env
+.env.*
+!.env.example
+site.env
+private_config.json
+access.txt
+*.pem
+*.key
+# Private input and results
+sources/
+open/
+data/raw/*
+!data/raw/.gitkeep
+storage/*
+!storage/.gitkeep
+*.mov
+*.MOV
+*.mp4
+*.xlsx
+*.sqlite*
+*.db
+# Model weights and training artifacts
+models/*
+!models/cash_r3d/
+models/cash_r3d/*
+!models/cash_r3d/typed_classifier.npz
+!models/cash_r3d/typed_report.json
+*.pth
+*.pt
+*.pkl
+*.joblib
+*.safetensors
+.downloads/
+# Keep only reviewed public regulatory snapshots under outputs
+outputs/*
+!outputs/case_review/
+outputs/case_review/*
+!outputs/case_review/legal_sources/
+outputs/case_review/legal_sources/*
+!outputs/case_review/legal_sources/*_paragraphs.json
