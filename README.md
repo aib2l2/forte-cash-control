@@ -29,7 +29,7 @@
 приложена, но её работа на вашем сервере требует отдельной проверки.
 
 ```bash
-gh repo clone aib2l2/forte-cash-control
+git clone https://github.com/aib2l2/forte-cash-control.git
 cd forte-cash-control
 python3.13 -m venv .venv
 source .venv/bin/activate
@@ -38,8 +38,8 @@ python -m pip install -r deploy/requirements-runtime.txt
 python scripts/setup_env.py
 ```
 
-Репозиторий приватный: для клонирования и скачивания выпуска нужен доступ
-к нему и авторизация GitHub CLI (`gh auth login`).
+Репозиторий публичный: код, презентацию и веса можно скачать без входа в GitHub.
+GitHub CLI не требуется. Приложение запускается на вашем компьютере или сервере.
 
 ### Установить веса активной модели
 
@@ -47,10 +47,16 @@ python scripts/setup_env.py
 Скачивание выполняется только при установке; анализ видео не требует интернета.
 
 ```bash
-gh release download v1.0.0 --repo aib2l2/forte-cash-control --pattern r3d18-kinetics400.zip --dir .downloads
+mkdir -p .downloads
+curl --fail --location --retry 3 \
+  https://github.com/aib2l2/forte-cash-control/releases/download/v1.0.0/r3d18-kinetics400.zip \
+  --output .downloads/r3d18-kinetics400.zip
 python -m zipfile -e .downloads/r3d18-kinetics400.zip .
 python scripts/verify_model.py
 ```
+
+Также можно [скачать архив весов в браузере](https://github.com/aib2l2/forte-cash-control/releases/download/v1.0.0/r3d18-kinetics400.zip)
+и распаковать его в корень проекта, сохранив структуру `models/cash_r3d/`.
 
 Проверка сверяет SHA-256 обоих файлов модели с отчётом и проверяет словарь типов.
 Исходные видео, Excel и кэши обучения для анализа нового видео не нужны.
