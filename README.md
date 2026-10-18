@@ -18,9 +18,9 @@ R3D-18 Kinetics-400 и два обученных линейных классиф
 
 ## Демо для жюри
 
-**[Открыть веб-интерфейс](https://stunning-built-carnival-korea.trycloudflare.com/)**
+**[Открыть веб-интерфейс](https://differently-yet-increases-told.trycloudflare.com/)**
 
-API base URL: `https://stunning-built-carnival-korea.trycloudflare.com`.
+API base URL: `https://differently-yet-increases-told.trycloudflare.com`.
 К нему добавляются пути `/api/v1/analyze` и `/api/v1/jobs/{job_id}`.
 
 Веб-интерфейс запрашивает логин и пароль. API использует отдельный заголовок
