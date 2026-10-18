@@ -72,7 +72,7 @@ def event_peaks(starts, ends, scores, threshold, types=None):
 class Analyzer:
     def __init__(self):
         if not model_status()["ready"]:
-            raise AnalyzerNotConfigured("Модель ещё не обучена. Запустите cash_ml.train.")
+            raise AnalyzerNotConfigured("Файлы модели не установлены. Скачайте веса по README и выполните python scripts/verify_model.py.")
         report = json.loads((MODEL_DIR / "typed_report.json").read_text())
         path = MODEL_DIR / "typed_classifier.npz"
         if sha256(path) != report["classifier_sha256"]:

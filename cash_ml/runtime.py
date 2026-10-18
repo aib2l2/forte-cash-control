@@ -14,8 +14,8 @@ from threading import RLock, Timer
 
 from starlette.concurrency import run_in_threadpool
 
+from backend.app_factory import create_app
 from backend.jobs import JobManager, QueueFull
-from backend.main import create_app
 from backend.schemas import AnalysisResult, JobResponse
 
 

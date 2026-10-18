@@ -8,10 +8,11 @@ import pytest
 from fastapi.testclient import TestClient
 from PIL import Image
 
+from backend.app_factory import create_app
 from backend.config import Settings
 from backend.jobs import JobManager
-from backend.main import create_app
 from backend.schemas import AnalysisResult, EvidenceFrame, JobResponse, Violation
+from backend.services.analyzer import AnalyzerNotConfigured
 
 KEY = "test-only-api-key"
 HEADERS = {"X-API-Key": KEY}
@@ -63,12 +64,15 @@ def test_invalid_uploads_do_not_leave_files(settings, name, content, status):
 
 
 def test_unconfigured_model_is_failure_not_a_negative_verdict(settings):
-    with TestClient(create_app(settings)) as client:
+    def unavailable(_):
+        raise AnalyzerNotConfigured("Файлы модели не установлены")
+
+    with TestClient(create_app(settings, unavailable)) as client:
         response = upload(client, "EXAMPLE.MOV")
         assert response.status_code == 202
         job = wait_for_job(client, response.json()["job_id"])
         assert job["status"] == "failed"
-        assert "ещё не подключена" in job["error"]
+        assert "Файлы модели не установлены" in job["error"]
         assert "verdict" not in job
         assert "violations" not in job
     assert list((settings.storage_dir / "uploads").iterdir()) == []
@@ -174,7 +178,7 @@ def test_schema_rejects_missing_or_invalid_evidence():
         Violation(type="event", timecode_sec=1, description="test", evidence_frames=[])
 
 
-def test_frontend_renders_without_model(monkeypatch):
+def test_compatibility_frontend_renders_active_interface(monkeypatch):
     import httpx
     from streamlit.testing.v1 import AppTest
 
@@ -182,11 +186,55 @@ def test_frontend_renders_without_model(monkeypatch):
     monkeypatch.setattr(
         httpx, "get",
         lambda *args, **kwargs: httpx.Response(
-            200, json={"status": "ok"}, request=httpx.Request("GET", "http://localhost/health"),
+            200, json={"ready": True, "active_version": "typed_v2", "allowed_types": ["safe_left_open"],
+                       "threshold": 0.5, "test": {}, "type_test": {}},
+            request=httpx.Request("GET", "http://localhost/api/v1/model"),
         ),
     )
     root = Path(__file__).resolve().parents[1]
     app = AppTest.from_file(str(root / "frontend" / "app.py")).run(timeout=10)
     assert not app.exception
-    assert "AI-модель ещё не подключена" in app.warning[0].value
+    assert any("Готова к анализу" in element.value for element in app.markdown)
+    assert not any("ещё не подключена" in element.value for element in app.warning)
     assert app.button[0].disabled
+
+
+def test_compatibility_api_uses_active_model_and_deadline_worker(monkeypatch, tmp_path):
+    monkeypatch.setenv("API_KEY", KEY)
+    monkeypatch.setenv("STORAGE_DIR", str(tmp_path / "compat-storage"))
+    from backend.main import app as compatibility_app
+    from cash_ml.api import app as active_app
+    from cash_ml.runtime import DeadlineJobManager
+
+    assert compatibility_app is active_app
+    with TestClient(compatibility_app) as client:
+        assert isinstance(compatibility_app.state.jobs, DeadlineJobManager)
+        assert client.get("/api/v1/model").status_code == 401
+        status = client.get("/api/v1/model", headers=HEADERS).json()
+        assert status["ready"] and status["active_version"] == "typed_v2"
+        assert len(status["allowed_types"]) == 11
+
+
+def test_compatibility_analyzer_delegates_to_active_model(monkeypatch):
+    from backend.services.analyzer import analyze_video
+    from cash_ml import service
+
+    seen = []
+    expected = AnalysisResult(verdict="no_violation", violations=[])
+
+    def active(path):
+        seen.append(path)
+        return expected
+
+    monkeypatch.setattr(service, "analyze_video", active)
+    path = Path("arbitrary-upload.mov")
+    assert analyze_video(path) is expected
+    assert seen == [path]
+
+
+def test_missing_model_instructions_refer_to_installation(monkeypatch):
+    from cash_ml import service
+
+    monkeypatch.setattr(service, "model_status", lambda: {"ready": False})
+    with pytest.raises(AnalyzerNotConfigured, match="scripts/verify_model.py"):
+        service.Analyzer()

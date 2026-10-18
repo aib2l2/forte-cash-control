@@ -1,17 +1,25 @@
-Release validation — 2026-10-18
+Release 1.0.1 validation — 2026-10-18
 
 Active model: typed_v2 (frozen R3D-18 + two Logistic Regression classifiers).
 Source and weights were copied from the working project. No retraining or model
 replacement was performed for this publication.
 
 Checks on the standalone publication copy:
-- pytest tests cash_ml -q: 88 passed, 1 skipped.
+- pytest tests cash_ml -q: 91 passed, 1 skipped.
 - The skipped check requires private experiment artifacts, intentionally absent.
 - R3D-18 and classifier SHA-256 hashes match typed_report.json.
 - The classifier vocabulary matches all 11 allowed types.
-- Real inference on a generated synthetic clip passed with network disabled.
+- The unchanged model previously passed inference on a generated synthetic clip
+  with network disabled during the 1.0.0 publication check.
 - Credentials and private input/result files were excluded from the Git file list.
+- The local inference archive builder completed with its allowlist and integrity checks.
+- Both API entry points resolve to the active application and deadline worker.
+- A standalone backend.main:app process completed a synthetic video job in 2.89 s
+  using typed_v2; this timing is not a real-world performance benchmark.
+- The compatibility frontend renders the current ForteAI interface.
+- Missing model files produce installation instructions instead of a scaffold warning.
 - The final 12-slide presentation passed layout/package checks and visual review.
+  Slides 1–11 are visually unchanged; the final link opens the README demo section.
 
 These checks validate packaging and behavior. They are not an independent
 accuracy measurement or verification of deployment on an external server.

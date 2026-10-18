@@ -15,8 +15,8 @@ from cash_ml.service import analyze_video, model_status, violation_contract
 settings = Settings.from_env()
 app = create_runtime_app(settings=replace(settings, storage_dir=settings.storage_dir / "typed_v2"),
                  analyzer=analyze_video)
-app.title = "Forte Cash Control — R3D-18 prototype"
-app.description = "Локальная экспериментальная модель. Типы строго из актуальной разметки Excel."
+app.title = "ForteAI Cash Control"
+app.description = "Локальная демонстрационная модель typed_v2 на R3D-18. Типы строго из разметки Excel; срабатывания проверяет оператор."
 
 # Encode the same whitelist in OpenAPI and validate stored responses as well.
 status = model_status()

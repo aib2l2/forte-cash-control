@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import tomllib
 import zipfile
 from datetime import UTC, datetime
 from pathlib import Path
@@ -16,16 +17,19 @@ def digest(path):
 
 def build():
     paths = set()
-    for folder in ("backend", "cash_ml"):
+    for folder in ("backend", "cash_ml", "frontend"):
         paths.update(p for p in (ROOT / folder).rglob("*.py") if "__pycache__" not in p.parts)
     paths.update((ROOT / "cash_ml/assets").rglob("*"))
     paths.update((ROOT / "deploy").rglob("*"))
+    paths.update((ROOT / "docs").rglob("*"))
+    paths.update((ROOT / ".streamlit").rglob("*"))
+    paths.update((ROOT / ".vscode").glob("*.json"))
     paths.update((ROOT / "outputs/case_review/legal_sources").glob("*_paragraphs.json"))
     for name in ["pyproject.toml", ".env.example", "scripts/setup_env.py", "cash_ml/requirements.txt",
                  "cash_ml/rule_registry.json", "cash_ml/README.md", "README.md",
                  "models/cash_r3d/r3d18_kinetics400.pth", "models/cash_r3d/typed_classifier.npz",
-                 "models/cash_r3d/typed_report.json", "outputs/case_review/execution_report.txt",
-                 "outputs/case_review/data_collection_plan.txt", "outputs/case_review/implementation_prompt.txt"]:
+                 "models/cash_r3d/typed_report.json", "scripts/verify_model.py",
+                 "ForteAI-ML.code-workspace", "rules/README.md"]:
         paths.add(ROOT / name)
     files = sorted(p for p in paths if p.is_file() and "__pycache__" not in p.parts
                    and p.name not in {"site.env", ".env"} and not p.is_symlink())
@@ -33,10 +37,11 @@ def build():
         relative = p.relative_to(ROOT)
         assert relative.parts[0] not in {"storage", "sources", ".venv", ".git"}
         assert p.suffix.lower() not in {".mov", ".mp4", ".xlsx", ".sqlite3", ".db"}
-    manifest = {"built_utc": datetime.now(UTC).isoformat(), "purpose": "inference only; training data excluded",
+    version = tomllib.loads((ROOT / "pyproject.toml").read_text())["project"]["version"]
+    manifest = {"application_version": version, "built_utc": datetime.now(UTC).isoformat(), "purpose": "inference only; training data excluded",
                 "active_model": "typed_v2", "public_deployment_verified": False,
                 "files": {str(p.relative_to(ROOT)): digest(p) for p in files}}
-    target = ROOT / "outputs/releases/forte-cash-control-inference-20261018.zip"
+    target = ROOT / "outputs/releases" / f"forte-cash-control-inference-{version}.zip"
     target.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(target, "x", zipfile.ZIP_DEFLATED, compresslevel=2) as archive:
         for p in files:
